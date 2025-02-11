@@ -28,24 +28,30 @@ func ReplaceCSV(csvName string) error {
 		// 假设要修改第二列（索引为1）的字段
 		if len(record) > 1 {
 			for key, values := range record {
-				if values == "产品" {
+				if values == "财务单元" {
+					record[key] = "financial"
+				}
+				if values == "产品" || values == "产品名称" {
 					record[key] = "product_name"
 				}
 				if values == "产品Code" {
 					record[key] = "product_code"
 				}
-				if values == "实例ID" {
+				if values == "实例ID" || values == "资产/资源实例ID" {
 					record[key] = "resource_id" // 将字段修改为 "NewValue"
 				}
-				if values == "实例昵称" {
+				if values == "计费项" {
+					record[key] = "usage_type" // 将字段修改为 "NewValue"
+				}
+				if values == "实例昵称" || values == "资产/资源实例名称" {
 					record[key] = "Name" // 将字段修改为 "NewValue"
 				}
 				if values == "资源组" {
 					record[key] = "resource_group" // 将字段修改为 "NewValue"
 				}
-				// if values == "实例标签" {
-				// 	record[key] = "labels" // 将字段修改为 "NewValue"
-				// }
+				if values == "实例标签" {
+					record[key] = "labels" // 将字段修改为 "NewValue"
+				}
 				if values == "实例规格" {
 					record[key] = "instance_type" // 将字段修改为 "NewValue"
 				}
@@ -61,7 +67,9 @@ func ReplaceCSV(csvName string) error {
 				if values == "应付金额" {
 					record[key] = "un_blended_cost"
 				}
-
+				if values == "资源实例规格" {
+					record[key] = "item_description"
+				}
 			}
 		}
 	}
